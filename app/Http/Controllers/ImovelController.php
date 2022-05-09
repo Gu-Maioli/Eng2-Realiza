@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\StoreUpdateImovel;
+use App\Models\Imovel;
+use Exception;
+use Illuminate\Http\Request;
+
+class ImovelController extends Controller
+{
+    public function index()
+    {
+        $imoveis = new Imovel();
+        $imoveis = $imoveis->getAll();
+        
+        return view('imovel.showImovel', compact('imoveis'));
+    }
+
+    public function cadastro()
+    {
+        return view('imovel.cadastroImovel');
+    }
+
+    public function show()
+    {
+        return view('imovel.showImovel');
+    }
+
+    public function store(StoreUpdateImovel $request)
+    {
+        try
+        {
+            $logradouro = LogradouroController::setInfoLogradouro($request);
+            LogradouroController::saveLogradouro($logradouro);
+            
+            $imovel = ImovelController::setInfoImovel($request->all(), $logradouro->id);
+            Imovel::saveImovel($imovel);
+
+            //$logradouro = (new LogradouroController())->store($request);
+            //Imovel::create($request->all());
+            return redirect()->route('imovel.cadastro');
+        }catch(Exception $e){
+
+        }
+    }
+
+    public function setInfoImovel($dados, $logradouro_id)
+    {
+        try{
+            $imovel = new Imovel();
+            $imovel->fill($dados);
+            $imovel->logradouro_id = $logradouro_id;
+
+            return $imovel;
+        } catch(Exception $e){
+            dd($e);
+            return '';
+        }
+    }
+}
