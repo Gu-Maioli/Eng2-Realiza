@@ -21,7 +21,6 @@ class Logradouro extends Model
         try
         {
             DB::beginTransaction();
-            //dd($logradouro);
             $logradouro->save();
             DB::commit();
         }catch(Exception $e)
@@ -29,6 +28,21 @@ class Logradouro extends Model
             dd($e->getMessage());
             DB::rollBack();
             return 'Error';
+        }
+    }
+
+    static function deleteLogradouro($id)
+    {
+        try
+        {
+            $logradouro = Logradouro::find($id);
+            
+            DB::beginTransaction();
+            $logradouro->delete();
+            DB::commit();
+        } catch(Exception $e){
+            DB::rollBack();
+            dd($e->getMessage());
         }
     }
 }

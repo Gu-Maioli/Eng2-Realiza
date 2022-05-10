@@ -37,7 +37,11 @@
                     <td>{{$imovel->descricao}}</td>
                     <td>X</td>
                     <td>
-                        <a href=""><button type="button" class="btn btn-outline-danger btn-sm">Excluir</button></a>
+                        <form action="{{ route('imovel.delete', $imovel->id) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                        </form>
                     </td>
                 </tr>
             </tbody>

@@ -34,7 +34,7 @@ class ImovelController extends Controller
             $logradouro = LogradouroController::setInfoLogradouro($request);
             LogradouroController::saveLogradouro($logradouro);
             
-            $imovel = ImovelController::setInfoImovel($request->all(), $logradouro->id);
+            $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
             Imovel::saveImovel($imovel);
 
             //$logradouro = (new LogradouroController())->store($request);
@@ -45,9 +45,25 @@ class ImovelController extends Controller
         }
     }
 
+    public function delete($id_imovel)
+    {
+        try
+        {
+            $imovel = Imovel::findImovel($id_imovel);
+            Imovel::deleteImovel($imovel);
+            LogradouroController::deleteLogradouro($imovel->logradouro_id);
+            return redirect()->route('imovel.index');
+        } catch (Exception $e){
+            dd($e->getMessage());
+        }
+        
+        
+    }
+
     public function setInfoImovel($dados, $logradouro_id)
     {
-        try{
+        try
+        {
             $imovel = new Imovel();
             $imovel->fill($dados);
             $imovel->logradouro_id = $logradouro_id;

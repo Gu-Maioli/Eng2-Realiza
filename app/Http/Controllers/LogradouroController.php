@@ -59,4 +59,14 @@ class LogradouroController extends Controller
         
         return $logradouro;
     }
+
+    static function deleteLogradouro($id)
+    {
+        try{
+            return Logradouro::deleteLogradouro($id);
+        } catch(Exception $e){
+            dd($e->getMessage());
+        }
+        
+    }
 }

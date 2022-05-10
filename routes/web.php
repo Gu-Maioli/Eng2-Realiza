@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::delete('/imovel/delete/{id_imovel}', [ImovelController::class, 'delete'])->name('imovel.delete');
 Route::get('/imovel/show/{id}', [ImovelController::class, 'show'])->name('imovel.show');
 Route::get('/imovel/index', [ImovelController::class, 'index'])->name('imovel.index');
 Route::get('/imovel/cadastro', [ImovelController::class, 'cadastro'])->name('imovel.cadastro');
