@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImovelController;
+use App\Http\Controllers\ParametrizacaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,7 @@ Route::get('/imovel/show/{id}', [ImovelController::class, 'show'])->name('imovel
 Route::get('/imovel/index', [ImovelController::class, 'index'])->name('imovel.index');
 Route::get('/imovel/cadastro', [ImovelController::class, 'cadastro'])->name('imovel.cadastro');
 Route::post('/imovel/store', [ImovelController::class, 'store'])->name('imovel.store');
+
+Route::get('/parametrizacao/index', [ParametrizacaoController::class, 'index'])->name('parametrizacao.index');
+Route::post('/parametrizacao/cadastro', [ParametrizacaoController::class, 'cadastro'])->name('parametrizacao.cadastro');
+Route::delete('/parametrizacao/delete/{id}', [ParametrizacaoController::class, 'delete'])->name('parametrizacao.delete');

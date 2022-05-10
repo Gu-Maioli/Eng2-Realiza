@@ -15,7 +15,7 @@
 </head>
 <body>
 <br>
-    <div style="background-color: LightSlateGray" class="container-lg">
+    <div style="background-color: LightSlateGray" class="container-sm">
     <br><br>
 
     @foreach($imoveis as $imovel)
