@@ -14,6 +14,9 @@
     <title>Parametrização</title>
 </head>
 <body>
+    @if(isset($parametrizacao))
+        @include('parametrizacao/parametrizacao')
+    @endif
 <br>
     <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
         <form action="{{ route('parametrizacao.cadastro')}}" method="post">
@@ -27,15 +30,15 @@
             <br>
             <div class="d-grid gap-2 d-md-block">
                 <button type="submit" class="btn btn-success">Confirmar</button>
-                <a href="{{ route('imovel.index')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
-                <a href="{{ route('imovel.index')}}"><button type="button" class="btn btn-secondary">Voltar</button></a>
+                <a href="{{ route('welcome')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                <a href="{{ route('welcome')}}"><button type="button" class="btn btn-secondary">Voltar</button></a>
             </div>
         </form>
     </div>
     <br><br>
     <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
         <div class="row">
-        @foreach($parametrizacao as $P)
+        @foreach($arrayParametrizacao as $P)
         <table class="table">
             <thead>
                 <tr>

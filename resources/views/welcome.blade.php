@@ -14,6 +14,10 @@
     <title>Inicio</title>
 </head>
 <body>
+    @if(isset($parametrizacao))
+        @include('parametrizacao/parametrizacao')
+    @endif
+    <br>
     <div style="background-color: LightSlateGray; width: 50%" class="container">
         <br>
         <div class="row">

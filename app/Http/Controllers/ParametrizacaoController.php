@@ -9,12 +9,20 @@ use Illuminate\Http\Request;
 
 class ParametrizacaoController extends Controller
 {
+    public function welcome()
+    {
+        $parametrizacao = $this->getParametrizacao();
+        
+        return view('welcome', compact('parametrizacao'));
+    }
+
     public function index()
     {
-        $parametrizacao = new Parametrizacao();
-        $parametrizacao = $parametrizacao->getAll();
+        $arrayParametrizacao = new Parametrizacao();
+        $arrayParametrizacao = $arrayParametrizacao->getAll();
+        $parametrizacao = $this->getParametrizacao();
         
-        return view('parametrizacao.index', compact('parametrizacao'));
+        return view('parametrizacao.index', compact('arrayParametrizacao', 'parametrizacao'));
     }
 
     public function cadastro(StoreUpdateParametrizacao $request)
@@ -23,10 +31,11 @@ class ParametrizacaoController extends Controller
         {
             $parametrizacao = $this->setInfoParametrizacao($request->all());
             Parametrizacao::saveParametrizacao($parametrizacao);
+            
+            return redirect()->action([ParametrizacaoController::class, 'welcome']);
 
-            return redirect()->route('imovel.index');
         } catch(Exception $e){
-            dd($e);
+            dd($e->getMessage());
         }
     }
 
@@ -43,8 +52,17 @@ class ParametrizacaoController extends Controller
         try
         {
             Parametrizacao::deleteParametrizacao($id);
+
+            return redirect()->action([ParametrizacaoController::class, 'welcome']);
         } catch(Exception $e){
             dd($e);
         }
+    }
+
+    public function getParametrizacao()
+    {
+        $parametrizacao = new Parametrizacao();
+        
+        return ($parametrizacao->getParametrizacao());
     }
 }

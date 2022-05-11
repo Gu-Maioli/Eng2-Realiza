@@ -15,7 +15,12 @@
 </head>
 <body>
 <br>
-    <div style="background-color: LightSlateGray" class="container-sm">
+    
+    @if(isset($parametrizacao))
+        @include('parametrizacao/parametrizacao')
+    @endif
+
+    <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
     <br><br>
 
     @foreach($imoveis as $imovel)
@@ -50,6 +55,11 @@
     <a href="{{ route('imovel.cadastro')}}">    
         <button type="submit" class="btn btn-primary">
             Cadastrar Imóveis
+        </button>
+    </a>
+    <a href="{{ route('welcome')}}">    
+        <button type="submit" class="btn btn-warning">
+            Voltar
         </button>
     </a>
     </div>

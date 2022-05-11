@@ -22,6 +22,13 @@ class Parametrizacao extends Model
                 ->select('parametrizacao.id', 'parametrizacao.nome')
                 ->get();
     }
+    
+    static function getParametrizacao()
+    {
+        return DB::table('parametrizacao')
+                ->select('parametrizacao.id', 'parametrizacao.nome')
+                ->first();
+    }
 
     static function saveParametrizacao($parametrizacao)
     {

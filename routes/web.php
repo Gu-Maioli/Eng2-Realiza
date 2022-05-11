@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [ParametrizacaoController::class, 'welcome'])->name('welcome');
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
 
 Route::delete('/imovel/delete/{id_imovel}', [ImovelController::class, 'delete'])->name('imovel.delete');
 Route::get('/imovel/show/{id}', [ImovelController::class, 'show'])->name('imovel.show');

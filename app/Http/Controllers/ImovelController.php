@@ -13,13 +13,22 @@ class ImovelController extends Controller
     {
         $imoveis = new Imovel();
         $imoveis = $imoveis->getAll();
+
+        $parametrizacao = $this->getParametrizacao();
         
-        return view('imovel.showImovel', compact('imoveis'));
+        try{
+            return view('imovel.showImovel', compact('imoveis', 'parametrizacao'));
+        } catch (Exception $e){
+            dd($e->getMessage());
+        }
+        
     }
 
     public function cadastro()
     {
-        return view('imovel.cadastroImovel');
+        $parametrizacao = $this->getParametrizacao();
+        
+        return view('imovel.cadastroImovel', compact('parametrizacao'));
     }
 
     public function show()
@@ -73,5 +82,11 @@ class ImovelController extends Controller
             dd($e);
             return '';
         }
+    }
+
+    public function getParametrizacao()
+    {
+        $parametrizacao = new ParametrizacaoController();
+        return $parametrizacao->getParametrizacao();
     }
 }

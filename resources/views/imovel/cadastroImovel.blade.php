@@ -15,12 +15,11 @@
 </head>
 <body>
 
-<div>
-    Cadastro de Imóvel
-</div>
+    @if(isset($parametrizacao))
+        @include('parametrizacao/parametrizacao')
+    @endif
 
-
-<div style="background-color: LightSlateGray" class="container-lg">
+<div style="background-color: LightSlateGray; width: 50%" class="container-lg">
 
     @if ($errors->any())
         <ul>
