@@ -19,51 +19,67 @@
     @endif
 <br>
     <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
-        <form action="{{ route('parametrizacao.cadastro')}}" method="post">
+        <form action="{{ route('parametrizacao.cadastro') }}" method="post">
             @csrf
             <div class="row">
-                <div class="col-sm-5">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
                     <label for="nomeInputId" class="form-label">Nome</label>
-                    <input name="nome" type="text" class="form-control form-control-sm" id="nomeInputId">
+                    <input name="nome" value="{{$parametrizacao ? $parametrizacao->nome : ''}}" type="text" class="form-control form-control-sm" id="nomeInputId">
+                </div>
+                <div class="col-sm-3">
+                    <label for="cnpjInputId" class="form-label">CNPJ</label>
+                    <input name="cnpj" value="{{$parametrizacao ? $parametrizacao->cnpj : ''}}" type="text" class="form-control form-control-sm" id="cnpjInputId">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="enderecoInputId" class="form-label">Endereço</label>
+                    <input name="endereco" value="{{$parametrizacao ? $parametrizacao->endereco : ''}}" type="text" class="form-control form-control-sm" id="enderecoInputId">
+                </div>
+                <div class="col-sm-2">
+                    <label for="numeroInputId" class="form-label">N°</label>
+                    <input name="numero" value="{{$parametrizacao ? $parametrizacao->numero : ''}}" type="number" class="form-control form-control-sm" id="numeroInputId">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="cidadeInputId" class="form-label">Cidade</label>
+                    <input name="cidade" value="{{$parametrizacao ? $parametrizacao->cidade : ''}}" type="text" class="form-control form-control-sm" id="cidadeInputId">
+                </div>
+                <div class="col-sm-3">
+                    <label for="bairroInputId" class="form-label">Bairro</label>
+                    <input name="bairro" value="{{$parametrizacao ? $parametrizacao->bairro : ''}}" type="text" class="form-control form-control-sm" id="bairroInputId">
+                </div>
+                <div class="col-sm-2">
+                    <label for="cepInputId" class="form-label">CEP</label>
+                    <input name="cep" value="{{$parametrizacao ? $parametrizacao->cep : ''}}" type="text" class="form-control form-control-sm" id="cepInputId">
+                </div>
+                <div class="col-sm-1">
+                    <label for="ufInputId" class="form-label">UF</label>
+                    <input name="uf" value="{{$parametrizacao ? $parametrizacao->uf : ''}}" type="text" class="form-control form-control-sm" id="ufInputId">
                 </div>
             </div>
             <br>
             <div class="d-grid gap-2 d-md-block">
                 <button type="submit" class="btn btn-success">Confirmar</button>
-                <a href="{{ route('welcome')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
-                <a href="{{ route('welcome')}}"><button type="button" class="btn btn-secondary">Voltar</button></a>
+                <a href="{{ route('welcome') }}"><button type="button" class="btn btn-danger">Cancelar</button></a>
             </div>
+            <br>
         </form>
     </div>
-    <br><br>
-    <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
-        <div class="row">
-        @foreach($arrayParametrizacao as $P)
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">*</th>
-                    <td>{{$P->nome}}</td>
-                    <td>X</td>
-                    <td>
-                        <form action="{{ route('parametrizacao.delete', $P->id) }}" method="post">
-                            @csrf
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    @endforeach            
-        </div>
-        <br>
-    </div>
+    <script>
+        
+    </script>
 </body>
 </html>

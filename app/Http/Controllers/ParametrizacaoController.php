@@ -18,11 +18,9 @@ class ParametrizacaoController extends Controller
 
     public function index()
     {
-        $arrayParametrizacao = new Parametrizacao();
-        $arrayParametrizacao = $arrayParametrizacao->getAll();
         $parametrizacao = $this->getParametrizacao();
         
-        return view('parametrizacao.index', compact('arrayParametrizacao', 'parametrizacao'));
+        return view('parametrizacao.index', compact('parametrizacao'));
     }
 
     public function cadastro(StoreUpdateParametrizacao $request)

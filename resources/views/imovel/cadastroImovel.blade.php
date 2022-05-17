@@ -33,7 +33,7 @@
     @csrf
     <div class="row">
         <div class="col-sm-5">
-            <label for="enderecoInputId" class="form-label">Endereço</label>
+            <label for="enderecoInputId" class="form-label">Endereçoa</label>
             <input name="endereco" type="text" class="form-control form-control-sm" id="enderecoInputId">
         </div>
         <div class="col-sm-2">
