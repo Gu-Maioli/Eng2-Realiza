@@ -24,7 +24,13 @@ class StoreUpdateImovel extends FormRequest
     public function rules()
     {
         return [
-            'descricao' => 'required'
+            'descricao' => 'required',
+            'endereco' => 'required|min:5',
+            'bairro' => 'required', 
+            'numero' => 'required', 
+            'cidade' => 'required',
+            'uf' => 'required',
+            'cep' => 'required',
         ];
     }
 }
