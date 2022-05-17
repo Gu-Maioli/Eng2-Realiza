@@ -12,7 +12,7 @@ class Parametrizacao extends Model
     use HasFactory;
 
     protected $table = "parametrizacao";
-    protected $fillable = ['id','nome'];
+    protected $fillable = ['id','nome','cnpj','endereco','numero','bairro','cep','cidade','uf'];
     public $timestamps = false;
     protected $guarded = [];
 

@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href="resources/css/app.css" rel="stylesheet">
 <style>
     body {
         background-color: LightSteelBlue;
+    }
+    .required:after {
+        content:" *"; 
+        color: red;
     }
 </style>
     <title>CRUD IMOVEL</title>
@@ -33,30 +37,30 @@
     @csrf
     <div class="row">
         <div class="col-sm-5">
-            <label for="enderecoInputId" class="form-label">Endereçoa</label>
+            <label for="enderecoInputId" class="form-label required">Endereço</label>
             <input name="endereco" type="text" class="form-control form-control-sm" id="enderecoInputId">
         </div>
         <div class="col-sm-2">
-            <label for="bairroInputId" class="form-label">Bairro</label>
+            <label for="bairroInputId" class="form-label required">Bairro</label>
             <input name="bairro" type="text" class="form-control form-control-sm" id="bairroInputId">
         </div>
         <div class="col-sm-1">
-            <label for="numeroInputId" class="form-label">Numero</label>
+            <label for="numeroInputId" class="form-label required">N°</label>
             <input name="numero" type="text" class="form-control form-control-sm" id="numeroInputId">
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-2">
-            <label for="cidadeInputId" class="form-label">Cidade</label>
+            <label for="cidadeInputId" class="form-label required">Cidade</label>
             <input name="cidade" type="text" class="form-control form-control-sm" id="cidadeInputId">
         </div>
         <div class="col-sm-2">
-            <label for="cepInputId" class="form-label">CEP</label>
+            <label for="cepInputId" class="form-label required">CEP</label>
             <input name="cep" type="text" class="form-control form-control-sm" id="cepInputId">
         </div>
         <div class="col-sm-1">
-            <label for="ufInputId" class="form-label">UF</label>
+            <label for="ufInputId" class="form-label required">UF</label>
             <input name="uf" type="text" class="form-control form-control-sm" id="ufInputId">
         </div>
         <div class="col-sm-2">
@@ -67,7 +71,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <label for="descricao" class="form-label">Descrição</label>
+            <label for="descricao" class="form-label required">Descrição</label>
             <textarea name="descricao" class="form-control" id="descricaoId" rows="3"></textarea>
         </div>
     </div>

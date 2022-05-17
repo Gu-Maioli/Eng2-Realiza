@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateImovel;
 use App\Models\Imovel;
+use App\Models\Parametrizacao;
 use Exception;
 use Illuminate\Http\Request;
 
 class ImovelController extends Controller
 {
     public function index()
-    {
-        $imoveis = new Imovel();
-        $imoveis = $imoveis->getAll();
-
-        $parametrizacao = $this->getParametrizacao();
-        
-        try{
+    {      
+        try
+        {
+            $imoveis = new Imovel();
+            $imoveis = $imoveis->getAll();
+    
+            $parametrizacao = $this->getParametrizacao();
+            
             return view('imovel.showImovel', compact('imoveis', 'parametrizacao'));
         } catch (Exception $e){
             dd($e->getMessage());
@@ -40,8 +42,8 @@ class ImovelController extends Controller
     {
         try
         {
-            $logradouro = LogradouroController::setInfoLogradouro($request);
-            LogradouroController::saveLogradouro($logradouro);
+            $logradouro = $this->setInfoLogradouro($request);
+            Logradouro::saveLogradouro($logradouro);
             
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
             Imovel::saveImovel($imovel);
@@ -60,13 +62,12 @@ class ImovelController extends Controller
         {
             $imovel = Imovel::findImovel($id_imovel);
             Imovel::deleteImovel($imovel);
-            LogradouroController::deleteLogradouro($imovel->logradouro_id);
+            Logradouro::deleteLogradouro($imovel->logradouro_id);
+            
             return redirect()->route('imovel.index');
         } catch (Exception $e){
             dd($e->getMessage());
         }
-        
-        
     }
 
     public function setInfoImovel($dados, $logradouro_id)
@@ -86,7 +87,16 @@ class ImovelController extends Controller
 
     public function getParametrizacao()
     {
-        $parametrizacao = new ParametrizacaoController();
+        $parametrizacao = new Parametrizacao();
         return $parametrizacao->getParametrizacao();
+    }
+
+    static function setInfoLogradouro($request)
+    {
+        $dados = LogradouroController::verificaStoreLogradouro($request);
+        $logradouro = new Logradouro();
+        $logradouro->fill($dados);
+        
+        return $logradouro;
     }
 }

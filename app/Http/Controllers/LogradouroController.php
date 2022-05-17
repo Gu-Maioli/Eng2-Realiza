@@ -20,9 +20,8 @@ class LogradouroController extends Controller
         $teste = LogradouroController::verificaStoreLogradouro($request);
     }
 
-    static function verificaStoreLogradouro($request)
+    static function verificaStoreLogradouro($request) // inserir no store de logradouro
     {
-
         $validator = Validator::make($request->all(), [
             'endereco' => 'required|min:5',
             'bairro' => 'required', 
@@ -40,33 +39,5 @@ class LogradouroController extends Controller
         $validated = $validator->validated();
 
         return $validated;
-    }
-
-    static function saveLogradouro($logradouro)
-    {
-        try{
-            Logradouro::saveLogradouro($logradouro);
-        }catch(Exception $e){
-
-        }
-    }
-
-    static function setInfoLogradouro($request)
-    {
-        $dados = LogradouroController::verificaStoreLogradouro($request);
-        $logradouro = new Logradouro();
-        $logradouro->fill($dados);
-        
-        return $logradouro;
-    }
-
-    static function deleteLogradouro($id)
-    {
-        try{
-            return Logradouro::deleteLogradouro($id);
-        } catch(Exception $e){
-            dd($e->getMessage());
-        }
-        
     }
 }

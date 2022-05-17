@@ -22,36 +22,36 @@
 
     <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
     <br><br>
-
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Logradouro</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
     @foreach($imoveis as $imovel)
         <?php $i=1 ?>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Logradouro</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Imagem</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">{{$i++}}</th>
-                    <td>{{$imovel->endereco}}, N°{{$imovel->numero}}, {{$imovel->bairro}} - {{$imovel->cidade}} {{$imovel->uf}}</td>
-                    <td>{{$imovel->descricao}}</td>
-                    <td>X</td>
-                    <td>
-                        <form action="{{ route('imovel.delete', $imovel->id) }}" method="post">
-                            @csrf
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    @endforeach
+        <tbody>
+            <tr>
+                <th scope="row">{{$i++}}</th>
+                <td>{{$imovel->endereco}}, N°{{$imovel->numero}}, {{$imovel->bairro}} - {{$imovel->cidade}} {{$imovel->uf}}</td>
+                <td>{{$imovel->descricao}}</td>
+                <td>X</td>
+                <td>
+                    <form action="{{ route('imovel.delete', $imovel->id) }}" method="post">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                    </form> 
+                </td>
+            </tr>
+        </tbody>
+        @endforeach
+    </table>
+
     <a href="{{ route('imovel.cadastro')}}">    
         <button type="submit" class="btn btn-primary">
             Cadastrar Imóveis

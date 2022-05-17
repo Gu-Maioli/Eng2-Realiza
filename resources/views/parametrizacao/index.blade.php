@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href="css/app.css" rel="stylesheet">
 <style>
     body {
         background-color: LightSteelBlue;
@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <label for="nomeInputId" class="form-label">Nome</label>
+                    <label for="nomeInputId" class="form-label required">Nome</label>
                     <input name="nome" value="{{$parametrizacao ? $parametrizacao->nome : ''}}" type="text" class="form-control form-control-sm" id="nomeInputId">
                 </div>
                 <div class="col-sm-3">
