@@ -16,6 +16,8 @@
 <body>
     @if(isset($parametrizacao))
         @include('parametrizacao/parametrizacao')
+    @else
+        <meta http-equiv="Refresh" content="0; url=http://127.0.0.1:8000/parametrizacao/index" />
     @endif
     <br>
     <div style="background-color: LightSlateGray; width: 50%" class="container">

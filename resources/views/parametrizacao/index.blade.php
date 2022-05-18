@@ -26,6 +26,7 @@
 
     @if(isset($parametrizacao))
         <form action="{{ route('parametrizacao.alterar') }}" method="post">
+        <input type="hidden" id="id" name="id" value="{{$parametrizacao ? $parametrizacao->id : ''}}">
     @else
         <form action="{{ route('parametrizacao.cadastro') }}" method="post">
     @endif
@@ -41,7 +42,6 @@
                     </div>
                 @endif
             </div>
-            <input type="hidden" id="id" name="id" value="{{$parametrizacao ? $parametrizacao->id : ''}}">
             <div class="row">
                 <div class="col-sm-6">
                     <label for="nomeInputId" class="form-label required">Nome</label>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-sm-2">
                     <label for="cepInputId" class="form-label required">CEP</label>
-                    <input name="cep" value="{{$parametrizacao ? $parametrizacao->cep : ''}}" type="text" class="form-control form-control-sm" id="cepInputId">
+                    <input name="cep" oninput="mascara(this)" value="{{$parametrizacao ? $parametrizacao->cep : ''}}" type="text" class="form-control form-control-sm" id="cepInputId">
                 </div>
                 <div class="col-sm-1">
                     <label for="ufInputId" class="form-label required">UF</label>
@@ -93,6 +93,21 @@
         if($parametrizacao != "")
         {
             document.getElementById("confirmarBtnId").innerHTML = "Alterar";
+        }
+
+        function mascara(i){
+   
+        var v = i.value;
+        
+        if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+            i.value = v.substring(0, v.length-1);
+            return;
+        }
+        
+        i.setAttribute("maxlength", "10");
+        if (v.length == 2 ) i.value += ".";
+        if (v.length == 6) i.value += "-";
+
         }
     </script>
 </body>

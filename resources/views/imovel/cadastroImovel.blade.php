@@ -48,9 +48,9 @@
             <label for="bairroInputId" class="form-label required">Bairro</label>
             <input name="bairro" type="text" class="form-control form-control-sm" id="bairroInputId">
         </div>
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <label for="numeroInputId" class="form-label required">N°</label>
-            <input name="numero" type="text" class="form-control form-control-sm" id="numeroInputId">
+            <input name="numero" type="number" class="form-control form-control-sm" id="numeroInputId">
         </div>
     </div>
 
@@ -61,7 +61,7 @@
         </div>
         <div class="col-sm-2">
             <label for="cepInputId" class="form-label required">CEP</label>
-            <input name="cep" type="text" class="form-control form-control-sm" id="cepInputId">
+            <input name="cep" oninput="mascara(this)" type="text" class="form-control form-control-sm" id="cepInputId">
         </div>
         <div class="col-sm-1">
             <label for="ufInputId" class="form-label required">UF</label>
@@ -88,6 +88,21 @@
     <br>
     </form>
 </div>
+<script>
+    function mascara(i){
+   
+    var v = i.value;
+    
+    if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+        i.value = v.substring(0, v.length-1);
+        return;
+    }
+    
+    i.setAttribute("maxlength", "10");
+    if (v.length == 2 ) i.value += ".";
+    if (v.length == 6) i.value += "-";
 
+    }
+</script>
 </body>
 </html>

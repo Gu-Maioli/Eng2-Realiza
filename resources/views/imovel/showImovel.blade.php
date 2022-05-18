@@ -44,7 +44,9 @@
                     <form action="{{ route('imovel.delete', $imovel->id) }}" method="post">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                    <button onclick="return confirm('Tem certeza que deseja deletar este registro?')"
+                    type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                    
                     </form> 
                 </td>
             </tr>

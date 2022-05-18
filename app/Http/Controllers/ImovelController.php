@@ -45,7 +45,7 @@ class ImovelController extends Controller
         try
         {
             $logradouro = $this->setInfoLogradouro($request);
-            
+
             DB::beginTransaction();
             Logradouro::saveLogradouro($logradouro);
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
@@ -100,7 +100,9 @@ class ImovelController extends Controller
 
     static function setInfoLogradouro($request)
     {
+        
         $dados = LogradouroController::verificaStoreLogradouro($request);
+        
         $logradouro = new Logradouro();
         $logradouro->fill($dados);
         
