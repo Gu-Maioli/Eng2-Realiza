@@ -33,4 +33,17 @@ class StoreUpdateImovel extends FormRequest
             'cep' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'descricao.required' => 'O campo Descrição é obrigatório seu preenchimento',
+            'endereco.required' => 'O campo Endereco é obrigatório seu preenchimento',
+            'numero.required' => 'O campo Número é obrigatório seu preenchimento',
+            'uf.required' => 'O campo UF é obrigatório seu preenchimento',
+            'bairro.required' => 'O campo Bairro é obrigatório seu preenchimento',
+            'cidade.required' => 'O campo Cidade é obrigatório seu preenchimento',
+            'cep.required' => 'O campo CEP é obrigatório seu preenchimento',
+        ];
+    }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateImovel;
 use App\Models\Imovel;
+use App\Models\Logradouro;
 use App\Models\Parametrizacao;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ImovelController extends Controller
 {
@@ -43,16 +45,18 @@ class ImovelController extends Controller
         try
         {
             $logradouro = $this->setInfoLogradouro($request);
-            Logradouro::saveLogradouro($logradouro);
             
+            DB::beginTransaction();
+            Logradouro::saveLogradouro($logradouro);
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
             Imovel::saveImovel($imovel);
+            DB::commit();
 
             //$logradouro = (new LogradouroController())->store($request);
             //Imovel::create($request->all());
             return redirect()->route('imovel.cadastro');
         }catch(Exception $e){
-
+            DB::rollBack();
         }
     }
 
@@ -61,11 +65,14 @@ class ImovelController extends Controller
         try
         {
             $imovel = Imovel::findImovel($id_imovel);
+            DB::beginTransaction();
             Imovel::deleteImovel($imovel);
             Logradouro::deleteLogradouro($imovel->logradouro_id);
+            DB::commit();
             
             return redirect()->route('imovel.index');
         } catch (Exception $e){
+            DB::rollBack();
             dd($e->getMessage());
         }
     }

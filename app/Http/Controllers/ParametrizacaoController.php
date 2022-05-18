@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUpdateParametrizacao;
 use App\Models\Parametrizacao;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ParametrizacaoController extends Controller
 {
@@ -28,15 +29,38 @@ class ParametrizacaoController extends Controller
         try
         {
             $parametrizacao = $this->setInfoParametrizacao($request->all());
+            
+            DB::BeginTransaction();
             Parametrizacao::saveParametrizacao($parametrizacao);
+            DB::commit();
             
             return redirect()->action([ParametrizacaoController::class, 'welcome']);
 
         } catch(Exception $e){
+            DB::rollBack();
             dd($e->getMessage());
         }
     }
 
+    public function alterar(Request $request)
+    {
+        try
+        {
+            $parametros = $request->all();
+            $parametrizacao = $this->searchParametrizacao($request->all('id'));
+            $parametrizacao = $this->replaceDataParametrizacao($parametrizacao, $parametros);
+            
+            DB::BeginTransaction();
+            Parametrizacao::updateParametrizacao($parametrizacao);
+            DB::commit();
+            
+            return redirect()->action([ParametrizacaoController::class, 'welcome']);
+
+        } catch(Exception $e){
+            DB::rollBack();
+            dd($e->getMessage());
+        }
+    }
 
     public function setInfoParametrizacao($request)
     {
@@ -49,10 +73,13 @@ class ParametrizacaoController extends Controller
     {
         try
         {
+            DB::BeginTransaction();
             Parametrizacao::deleteParametrizacao($id);
+            DB::commit();
 
             return redirect()->action([ParametrizacaoController::class, 'welcome']);
         } catch(Exception $e){
+            DB::rollBack();
             dd($e);
         }
     }
@@ -62,5 +89,15 @@ class ParametrizacaoController extends Controller
         $parametrizacao = new Parametrizacao();
         
         return ($parametrizacao->getParametrizacao());
+    }
+
+    public function searchParametrizacao($idParametrizacao)
+    {
+        return Parametrizacao::find($idParametrizacao)->first();
+    }
+
+    public function replaceDataParametrizacao($parametrizacao, $parametros)
+    {
+        return($parametrizacao->fill($parametros));
     }
 }

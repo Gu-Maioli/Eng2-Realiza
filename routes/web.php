@@ -29,4 +29,5 @@ Route::post('/imovel/store', [ImovelController::class, 'store'])->name('imovel.s
 
 Route::get('/parametrizacao/index', [ParametrizacaoController::class, 'index'])->name('parametrizacao.index');
 Route::post('/parametrizacao/cadastro', [ParametrizacaoController::class, 'cadastro'])->name('parametrizacao.cadastro');
+Route::post('/parametrizacao/alterar', [ParametrizacaoController::class, 'alterar'])->name('parametrizacao.alterar');
 Route::delete('/parametrizacao/delete/{id}', [ParametrizacaoController::class, 'delete'])->name('parametrizacao.delete');

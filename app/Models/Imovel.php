@@ -40,13 +40,9 @@ class Imovel extends Model
     {
         try
         {
-            DB::beginTransaction();
             $imovel->save();
-            DB::commit();
         }catch(Exception $e)
         {
-            dd($e->getMessage());
-            DB::rollBack();
             return 'Error';
         }
     }
@@ -60,13 +56,9 @@ class Imovel extends Model
     {
         try
         {
-            DB::beginTransaction();
             $imovel->delete();
-            DB::commit();
         }catch(Exception $e)
         {
-            DB::rollBack();
-            dd($e->getMessage());            
             return 'Error';
         }
     }

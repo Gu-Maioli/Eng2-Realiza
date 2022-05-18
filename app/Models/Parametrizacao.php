@@ -26,7 +26,7 @@ class Parametrizacao extends Model
     static function getParametrizacao()
     {
         return DB::table('parametrizacao')
-                ->select('parametrizacao.id', 'parametrizacao.nome')
+                ->select('parametrizacao.*')
                 ->first();
     }
 
@@ -34,26 +34,32 @@ class Parametrizacao extends Model
     {
         try
         {
-            DB::BeginTransaction();
             $parametrizacao->save();
-            DB::commit();
+            
         } catch(Exception $e){
-            DB::rollBack();
-            dd($e->getMessage());
+            return '';
+        }
+    }
+
+    static function updateParametrizacao($parametrizacao)
+    {
+        try
+        {
+            $parametrizacao->save();
+
+        } catch(Exception $e){
+            return '';
         }
     }
 
     static function deleteParametrizacao($id)
     {
         try
-        {
-            DB::BeginTransaction();
+        {            
             $parametrizacao = Parametrizacao::find($id);
             $parametrizacao->delete();
-            DB::commit();
         } catch(Exception $e){
-            DB::rollBack();
-            dd($e->getMessage());
+            return '';
         }
     }
     

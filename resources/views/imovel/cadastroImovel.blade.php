@@ -25,13 +25,17 @@
 
 <div style="background-color: LightSlateGray; width: 50%" class="container-lg">
 
-    @if ($errors->any())
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
+    <div class="row">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 
     <form action="{{ route('imovel.store')}}" method="post">
     @csrf

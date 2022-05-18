@@ -20,13 +20,9 @@ class Logradouro extends Model
     {
         try
         {
-            DB::beginTransaction();
             $logradouro->save();
-            DB::commit();
         }catch(Exception $e)
         {
-            dd($e->getMessage());
-            DB::rollBack();
             return 'Error';
         }
     }
@@ -36,13 +32,10 @@ class Logradouro extends Model
         try
         {
             $logradouro = Logradouro::find($id);
-            
-            DB::beginTransaction();
             $logradouro->delete();
-            DB::commit();
+            
         } catch(Exception $e){
-            DB::rollBack();
-            dd($e->getMessage());
+            return'';
         }
     }
 }
