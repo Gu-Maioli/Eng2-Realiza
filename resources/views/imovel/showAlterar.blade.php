@@ -42,48 +42,47 @@
     <div class="row">
         <div class="col-sm-5">
             <label for="enderecoInputId" class="form-label required">Endereço</label>
-            <input name="endereco" type="text" class="form-control form-control-sm" id="enderecoInputId">
+            <input name="endereco" value="{{$logradouro->endereco}}" type="text" class="form-control form-control-sm" id="enderecoInputId">
         </div>
         <div class="col-sm-2">
             <label for="bairroInputId" class="form-label required">Bairro</label>
-            <input name="bairro" type="text" class="form-control form-control-sm" id="bairroInputId">
+            <input name="bairro" value="{{$logradouro->bairro}}" type="text" class="form-control form-control-sm" id="bairroInputId">
         </div>
         <div class="col-sm-2">
             <label for="numeroInputId" class="form-label required">N°</label>
-            <input name="numero" type="number" class="form-control form-control-sm" id="numeroInputId">
+            <input name="numero" value="{{$logradouro->numero}}" type="number" class="form-control form-control-sm" id="numeroInputId">
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-2">
             <label for="cidadeInputId" class="form-label required">Cidade</label>
-            <input name="cidade" type="text" class="form-control form-control-sm" id="cidadeInputId">
+            <input name="cidade" value="{{$logradouro->cidade}}" type="text" class="form-control form-control-sm" id="cidadeInputId">
         </div>
         <div class="col-sm-2">
             <label for="cepInputId" class="form-label required">CEP</label>
-            <input name="cep" oninput="mascara(this)" type="text" class="form-control form-control-sm" id="cepInputId">
+            <input name="cep" value="{{$logradouro->cep}}" oninput="mascara(this)" type="text" class="form-control form-control-sm" id="cepInputId">
         </div>
         <div class="col-sm-1">
             <label for="ufInputId" class="form-label required">UF</label>
-            <input name="uf" type="text" class="form-control form-control-sm" id="ufInputId">
+            <input name="uf" value="{{$logradouro->uf}}" type="text" class="form-control form-control-sm" id="ufInputId">
         </div>
         <div class="col-sm-2">
             <label for="complementoInputId" class="form-label">Complemento</label>
-            <input name="complemento" type="text" class="form-control form-control-sm" id="complementoInputId">
+            <input name="complemento" value="{{$logradouro->complemento}}" type="text" class="form-control form-control-sm" id="complementoInputId">
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-4">
             <label for="descricao" class="form-label required">Descrição</label>
-            <textarea name="descricao" class="form-control" id="descricaoId" rows="3"></textarea>
+            <textarea name="descricao" value="{{$imovel->descricao}}" class="form-control" id="descricaoId" rows="3"></textarea>
         </div>
     </div>
     <br>
     <div class="d-grid gap-2 d-md-block">
-        <button type="submit" class="btn btn-success">Confirmar</button>
+        <button type="submit" class="btn btn-success">Alterar</button>
         <a href="{{ route('imovel.index')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
-        <a href="{{ route('imovel.index')}}"><button type="button" class="btn btn-secondary">Voltar</button></a>
     </div>
     <br>
     </form>

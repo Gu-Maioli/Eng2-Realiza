@@ -38,4 +38,14 @@ class Logradouro extends Model
             return'';
         }
     }
+
+    static function getLogradouro($id)
+    {
+        return DB::table('logradouro')
+                ->join('imovel', 'imovel.logradouro_id', 'logradouro.id')
+                ->where('logradouro.id', $id)
+                ->select('logradouro.id','logradouro.endereco', 'logradouro.bairro', 'logradouro.complemento',
+                          'logradouro.numero', 'logradouro.cidade', 'logradouro.uf', 'logradouro.cep')
+                ->first();
+    }
 }

@@ -26,6 +26,7 @@ Route::get('/imovel/show/{id}', [ImovelController::class, 'show'])->name('imovel
 Route::get('/imovel/index', [ImovelController::class, 'index'])->name('imovel.index');
 Route::get('/imovel/cadastro', [ImovelController::class, 'cadastro'])->name('imovel.cadastro');
 Route::post('/imovel/store', [ImovelController::class, 'store'])->name('imovel.store');
+Route::get('/imovel/alterar/{id}', [ImovelController::class, 'showAlterar'])->name('imovel.showAlterar');
 
 Route::get('/parametrizacao/index', [ParametrizacaoController::class, 'index'])->name('parametrizacao.index');
 Route::post('/parametrizacao/cadastro', [ParametrizacaoController::class, 'cadastro'])->name('parametrizacao.cadastro');

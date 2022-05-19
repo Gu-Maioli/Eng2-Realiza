@@ -24,8 +24,15 @@ class ImovelController extends Controller
             return view('imovel.showImovel', compact('imoveis', 'parametrizacao'));
         } catch (Exception $e){
             dd($e->getMessage());
-        }
+        }   
+    }
+
+    public function showAlterar($id_imovel)
+    {
+        $imovel = Imovel::getImovel($id_imovel);
+        $logradouro = Logradouro::getLogradouro($imovel->log_id);
         
+        return view('imovel.showAlterar', compact('imovel','logradouro'));
     }
 
     public function cadastro()
@@ -99,8 +106,7 @@ class ImovelController extends Controller
     }
 
     static function setInfoLogradouro($request)
-    {
-        
+    { 
         $dados = LogradouroController::verificaStoreLogradouro($request);
         
         $logradouro = new Logradouro();

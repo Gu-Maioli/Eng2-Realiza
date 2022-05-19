@@ -45,9 +45,10 @@
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
                     <button onclick="return confirm('Tem certeza que deseja deletar este registro?')"
-                    type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
-                    
-                    </form> 
+                        type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                    <a href="{{ route('imovel.showAlterar', $imovel->id) }}"><button type="button" 
+                        class="btn btn-outline-info btn-sm">Alterar</button></a>
+                    </form>
                 </td>
             </tr>
         </tbody>

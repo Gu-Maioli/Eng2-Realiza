@@ -21,7 +21,9 @@ class Imovel extends Model
         return DB::table('imovel')
                 ->join('logradouro', 'imovel.logradouro_id', 'logradouro.id')
                 ->where('imovel.id', $id)
-                ->select('imovel.*')
+                ->select('imovel.id', 'imovel.descricao',
+                         'logradouro.id as log_id'/*,'logradouro.endereco', 'logradouro.bairro', 'logradouro.complemento',
+                          'logradouro.numero', 'logradouro.cidade', 'logradouro.uf', 'logradouro.cep'*/)
                 ->first();
     }
 
