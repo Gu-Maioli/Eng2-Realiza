@@ -16,6 +16,11 @@ class Logradouro extends Model
     public $timestamps = false;
     protected $guarded = [];
 
+    static function findLogradouro($id)
+    {
+        return Logradouro::find($id)->first();
+    }
+
     static function saveLogradouro($logradouro)
     {
         try

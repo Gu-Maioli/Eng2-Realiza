@@ -37,8 +37,10 @@
         @endif
     </div>
 
-    <form action="{{ route('imovel.store')}}" method="post">
+    <form action="{{ route('imovel.alterar')}}" method="post">
     @csrf
+    <input type="hidden" id="id_imovel" name="id_imovel" value="{{$imovel->id}}">
+    <input type="hidden" id="id_logradouro" name="id_logradouro" value="{{$logradouro->id}}">
     <div class="row">
         <div class="col-sm-5">
             <label for="enderecoInputId" class="form-label required">Endereço</label>
@@ -76,7 +78,7 @@
     <div class="row">
         <div class="col-sm-4">
             <label for="descricao" class="form-label required">Descrição</label>
-            <textarea name="descricao" value="{{$imovel->descricao}}" class="form-control" id="descricaoId" rows="3"></textarea>
+            <textarea name="descricao" value="{{$imovel->descricao}}" class="form-control" id="descricaoId" rows="3">{{$imovel->descricao}}</textarea>
         </div>
     </div>
     <br>

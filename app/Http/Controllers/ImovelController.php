@@ -9,6 +9,7 @@ use App\Models\Parametrizacao;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ImovelController extends Controller
 {
@@ -45,6 +46,27 @@ class ImovelController extends Controller
     public function show()
     {
         return view('imovel.showImovel');
+    }
+
+    public function alterar(Request $request)
+    {
+        try
+        {
+            $imovel = Imovel::findImovel($request->all('id_imovel'));
+            $logradouro = Logradouro::findLogradouro($request->all('id_logradouro'));
+            
+            $logradouro = $this->fillInfoLogradouro($logradouro, $request);
+            $imovel = $this->fillInfoImovel($request, $imovel);
+            
+            DB::beginTransaction();
+            Logradouro::saveLogradouro($logradouro);
+            Imovel::saveImovel($imovel);
+            DB::commit();
+
+            return redirect()->route('imovel.cadastro');
+        }catch(Exception $e){
+            DB::rollBack();
+        }
     }
 
     public function store(StoreUpdateImovel $request)
@@ -94,7 +116,6 @@ class ImovelController extends Controller
 
             return $imovel;
         } catch(Exception $e){
-            dd($e);
             return '';
         }
     }
@@ -106,12 +127,48 @@ class ImovelController extends Controller
     }
 
     static function setInfoLogradouro($request)
-    { 
-        $dados = LogradouroController::verificaStoreLogradouro($request);
+    {
+        $dados = ImovelController::verificaStoreLogradouro($request);
         
         $logradouro = new Logradouro();
         $logradouro->fill($dados);
         
         return $logradouro;
+    }
+
+    static function fillInfoLogradouro($logradouro, $request)
+    {
+        $dados = ImovelController::verificaStoreLogradouro($request);
+        $logradouro->fill($dados);
+        
+        return $logradouro;
+    }
+
+    static function fillInfoImovel($request, $imovel)
+    {
+        $imovel->fill($request->all());
+        
+        return $imovel;
+    }
+
+    static function verificaStoreLogradouro($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'endereco' => 'required',
+            'bairro' => 'required', 
+            'numero' => 'required', 
+            'cidade' => 'required',
+            'uf' => 'required',
+            'cep' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->route('imovel.index')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $validated = $validator->validated();
+
+        return $validated;
     }
 }

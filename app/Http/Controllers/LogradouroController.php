@@ -23,7 +23,7 @@ class LogradouroController extends Controller
     static function verificaStoreLogradouro($request) // inserir no store de logradouro
     {
         $validator = Validator::make($request->all(), [
-            'endereco' => 'required|min:5',
+            'endereco' => 'required',
             'bairro' => 'required', 
             'numero' => 'required', 
             'cidade' => 'required',

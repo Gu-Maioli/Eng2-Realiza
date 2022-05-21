@@ -51,7 +51,7 @@ class Imovel extends Model
 
     static function findImovel($id)
     {
-        return Imovel::find($id);
+        return Imovel::find($id)->first();
     }
 
     static function deleteImovel($imovel)

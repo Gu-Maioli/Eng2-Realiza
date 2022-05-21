@@ -25,7 +25,7 @@ class StoreUpdateImovel extends FormRequest
     {
         return [
             'descricao' => 'required',
-            'endereco' => 'required|min:5',
+            'endereco' => 'required',
             'bairro' => 'required', 
             'numero' => 'required', 
             'cidade' => 'required',
