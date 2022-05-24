@@ -40,6 +40,15 @@
             </a>
         </div>
         <br>
+
+        <div class="row">
+            <a href="{{ route('calcular.index')}}">
+                <button type="button" class="btn btn-dark">
+                    Calcular Alúguel
+                </button>
+            </a>
+        </div>
+        <br>
     </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalcularAluguelController;
 use App\Http\Controllers\ImovelController;
 use App\Http\Controllers\ParametrizacaoController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,6 @@ Route::get('/parametrizacao/index', [ParametrizacaoController::class, 'index'])-
 Route::post('/parametrizacao/cadastro', [ParametrizacaoController::class, 'cadastro'])->name('parametrizacao.cadastro');
 Route::post('/parametrizacao/alterar', [ParametrizacaoController::class, 'alterar'])->name('parametrizacao.alterar');
 Route::delete('/parametrizacao/delete/{id}', [ParametrizacaoController::class, 'delete'])->name('parametrizacao.delete');
+
+Route::get('/calcular/index', [CalcularAluguelController::class, 'index'])->name('calcular.index');
+Route::get('/calcular/imovel/{metros}', [CalcularAluguelController::class, 'calcular'])->name('calcular.imovel');
