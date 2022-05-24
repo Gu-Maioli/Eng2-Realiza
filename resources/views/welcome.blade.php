@@ -23,7 +23,7 @@
     <div style="background-color: LightSlateGray; width: 50%" class="container">
         <br>
         <div class="row">
-            <a href="{{ route('imovel.index')}}">
+            <a href="{{ route('imovel.index') }}">
                 <button type="button" class="btn btn-primary">
                     Imóveis
                 </button>

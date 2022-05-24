@@ -13,13 +13,20 @@ use Illuminate\Support\Facades\Validator;
 
 class ImovelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {      
         try
         {
             $imoveis = new Imovel();
-            $imoveis = $imoveis->getAll();
-    
+            
+            if(isset($request->all()['pesquisar']))
+            {
+                if( $request->all()['pesquisar'] != null || $request->all()['pesquisar'] != "")
+                $imoveis = $imoveis->getImovelFilter($request);
+            }
+            else
+                $imoveis = $imoveis->getAll(); 
+            
             $parametrizacao = $this->getParametrizacao();
             
             return view('imovel.showImovel', compact('imoveis', 'parametrizacao'));

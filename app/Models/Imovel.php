@@ -38,6 +38,18 @@ class Imovel extends Model
                 ->get();
     }
 
+    public function getImovelFilter($pesquisa)
+    {
+        return DB::table('imovel')
+                ->join('logradouro', 'imovel.logradouro_id', 'logradouro.id')
+                ->where('logradouro.endereco', 'ilike', "%$pesquisa%")
+                ->select('imovel.id', 'imovel.descricao', 'imovel.logradouro_id',
+                         'logradouro.complemento', 'logradouro.cep', 'logradouro.uf',
+                         'logradouro.numero', 'logradouro.endereco', 'logradouro.bairro',
+                         'logradouro.cidade')
+                ->get();
+    }
+
     static function saveImovel($imovel)
     {
         try

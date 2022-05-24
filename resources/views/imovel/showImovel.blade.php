@@ -21,14 +21,22 @@
     @endif
 
     <div style="background-color: LightSlateGray; width: 50%" class="container-sm">
-    <br><br>
+    <br>
+    <form action="{{ route('imovel.index') }}" method="get">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="submit" id="pesquisarBtnId" class="btn btn-info">Pesquisar</button>
+            </div>
+            <input id="pesquisarInputId" name="pesquisar" type="text" style="text-align: center;" class="form-control" placeholder="Pesquisar...">
+        </div>
+    </form>
+    <br>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Logradouro</th>
                 <th scope="col">Descrição</th>
-                <th scope="col">Imagem</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -39,7 +47,6 @@
                 <th scope="row">{{$i++}}</th>
                 <td>{{$imovel->endereco}}, N°{{$imovel->numero}}, {{$imovel->bairro}} - {{$imovel->cidade}} {{$imovel->uf}}</td>
                 <td>{{$imovel->descricao}}</td>
-                <td>X</td>
                 <td>
                     <form action="{{ route('imovel.delete', $imovel->id) }}" method="post">
                     @csrf
@@ -60,6 +67,7 @@
             Cadastrar Imóveis
         </button>
     </a>
+
     <a href="{{ route('welcome')}}">    
         <button type="submit" class="btn btn-warning">
             Voltar
