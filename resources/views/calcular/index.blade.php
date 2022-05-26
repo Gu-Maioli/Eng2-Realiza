@@ -46,6 +46,7 @@
             <button id="btnCalcular" type="button" class="btn btn-success">
                 Calcular
             </button>
+            <a href="{{ route('calcular.imovel', '1')}}"><button type="" class="btn btn-warning">calc</button></a>
     </div>
 </div>
 <script>

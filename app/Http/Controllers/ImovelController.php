@@ -18,15 +18,16 @@ class ImovelController extends Controller
         try
         {
             $imoveis = new Imovel();
-            
+            //DB::enableQueryLog();
             if(isset($request->all()['pesquisar']))
             {
                 if( $request->all()['pesquisar'] != null || $request->all()['pesquisar'] != "")
-                $imoveis = $imoveis->getImovelFilter($request);
+                $imoveis = $imoveis->getImovelFilter($request->all()['pesquisar']);
             }
             else
                 $imoveis = $imoveis->getAll(); 
             
+            //dd(DB::getQueryLog());
             $parametrizacao = $this->getParametrizacao();
             
             return view('imovel.showImovel', compact('imoveis', 'parametrizacao'));

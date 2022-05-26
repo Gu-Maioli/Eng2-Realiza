@@ -27,10 +27,17 @@ class CalcularAluguelController extends Controller
             $callback['message'] = "";
             $callback['result'] = "";
             $valor = $metros * 10000;
-
+            $this->makeArray();
             return['message'=>"success", 'result'=> $valor];
         } catch (Exception $e){
             return['message'=>"error", 'result'=> ""];
         }
+    }
+
+    public function makeArray()
+    {
+        $dados['bairro'] = ['centro' => 1];
+        $dados['endereco'] = ['rua' => 2, 'avenida' => 3];
+        dd($dados);
     }
 }
