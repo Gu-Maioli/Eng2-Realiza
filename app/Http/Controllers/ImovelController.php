@@ -71,7 +71,7 @@ class ImovelController extends Controller
             Imovel::saveImovel($imovel);
             DB::commit();
 
-            return redirect()->route('imovel.cadastro');
+            return redirect()->route('imovel.index');
         }catch(Exception $e){
             DB::rollBack();
         }
@@ -91,7 +91,7 @@ class ImovelController extends Controller
 
             //$logradouro = (new LogradouroController())->store($request);
             //Imovel::create($request->all());
-            return redirect()->route('imovel.cadastro');
+            return redirect()->route('imovel.index');
         }catch(Exception $e){
             DB::rollBack();
         }
