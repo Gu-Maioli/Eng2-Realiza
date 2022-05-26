@@ -42,7 +42,9 @@ class Imovel extends Model
     {
         return DB::table('imovel')
                 ->join('logradouro', 'imovel.logradouro_id', 'logradouro.id')
-                ->where('logradouro.endereco', 'ILIKE', '%'.$pesquisa.'%')
+                ->orWhere('logradouro.endereco', 'ILIKE', '%'.$pesquisa.'%')
+                ->orWhere('logradouro.bairro', 'ILIKE', '%'.$pesquisa.'%')
+                ->orWhere('logradouro.cidade', 'ILIKE', '%'.$pesquisa.'%')
                 ->select('imovel.id', 'imovel.descricao', 'imovel.logradouro_id',
                          'logradouro.complemento', 'logradouro.cep', 'logradouro.uf',
                          'logradouro.numero', 'logradouro.endereco', 'logradouro.bairro',

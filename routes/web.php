@@ -36,4 +36,4 @@ Route::post('/parametrizacao/alterar', [ParametrizacaoController::class, 'altera
 Route::delete('/parametrizacao/delete/{id}', [ParametrizacaoController::class, 'delete'])->name('parametrizacao.delete');
 
 Route::get('/calcular/index', [CalcularAluguelController::class, 'index'])->name('calcular.index');
-Route::get('/calcular/imovel/{metros}', [CalcularAluguelController::class, 'calcular'])->name('calcular.imovel');
+Route::get('/calcular/imovel', [CalcularAluguelController::class, 'calcular'])->name('calcular.imovel');

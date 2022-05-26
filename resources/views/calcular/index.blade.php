@@ -28,16 +28,41 @@
 <div style="background-color: LightSlateGray; width: 50%" class="container-lg">
     <div class="row">
         <div class="col-sm-5">
-            <label for="enderecoInputId" class="form-label required">Endereço Completo</label>
+            <label for="enderecoInputId" class="form-label required">Endereço</label>
             <input name="endereco" type="text" class="form-control form-control-sm" id="enderecoInputId">
+        </div>
+        <div class="col-sm-3">
+            <label for="bairroInputId" class="form-label required">Bairro</label>
+            <input name="bairro" type="text" class="form-control form-control-sm" id="bairroInputId">
+        </div>
+        <div class="col-sm-3">
+            <label for="cidadeInputId" class="form-label required">Cidade</label>
+            <input name="cidade" type="text" class="form-control form-control-sm" id="cidadeInputId">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <label for="conservacaoInputId" class="form-label required">Estado de conservação</label>
+            <input name="conservacao" type="text" class="form-control form-control-sm" id="conservacaoInputId">
+        </div>
+        <div class="col-sm-3">
+            <label for="tipoImovelInputId" class="form-label required">Tipo do Imóvel</label>
+            <input name="tipoImovel" type="text" class="form-control form-control-sm" id="tipoImovelInputId">
+        </div>
+        <div class="col-sm-3">
+            <label for="tipoMaterialInputId" class="form-label required">Tipo de Material</label>
+            <input name="tipoMaterial" type="text" class="form-control form-control-sm" id="tipoMaterialInputId">
         </div>
         <div class="col-sm-2">
             <label for="metrosInputId" class="form-label required">M²</label>
             <input name="metros" placeholder="Ex: 10" type="text" class="form-control form-control-sm" id="metrosInputId">
         </div>
+    </div>
+    <br>
+    <div class="row">
         <div class="col-sm-2">
             <label for="valorInputId" class="form-label">Valor</label>
-            <input name="valor" type="text" class="form-control form-control-sm" id="valorInputId">
+            <input name="valor" disabled type="text" class="form-control form-control-sm" id="valorInputId">
         </div>
     </div>
     <br>
@@ -56,11 +81,12 @@ $( document ).ready(function() {
     $("#btnCalcular").click(function()
     {
         event.preventDefault();
-        var metros = $('#metrosInputId').val();
-
+        var info = getInfo();
+        console.log([info]);
         $.ajax({
-            url: "/calcular/imovel/"+metros,
-            dataType: 'json'
+            url: "/calcular/imovel",
+            dataType: 'json',
+            data: {info: JSON.stringify(info)}
         }).done(function(callback){
 
             if(callback.message == "error"){
@@ -75,6 +101,20 @@ $( document ).ready(function() {
 
 
     });
+
+    function getInfo()
+    {
+        var metros = $('#metrosInputId').val();
+        var endereco = $('#enderecoInputId').val();
+        var bairro = $('#bairroInputId').val();
+        var cidade = $('#cidadeInputId').val();
+        var conser = $('#conservacaoInputId').val();
+        var tipoI = $('#tipoImovelInputId').val();
+        var tipoM = $('#tipoMaterialInputId').val();
+
+        var info = {'metros': metros, 'endereco': endereco, 'bairro': bairro, 'cidade': cidade, 'conser': conser, 'tipoI': tipoI, 'tipoM': tipoM};
+        return info;
+    }
 });
     /*
     $.ajax({
