@@ -71,10 +71,16 @@
             <button id="btnCalcular" type="button" class="btn btn-success">
                 Calcular
             </button>
-            <a href="{{ route('calcular.imovel', '1')}}"><button type="" class="btn btn-warning">calc</button></a>
     </div>
 </div>
 <script>
+    $(function(){
+        $('#valorInputId').maskMoney({
+            prefix:'R$ ',
+            allowNegative: true,
+            thousands:'.', decimal:',',
+            affixesStay: true});
+    })
 
 $( document ).ready(function() {
     
@@ -82,7 +88,7 @@ $( document ).ready(function() {
     {
         event.preventDefault();
         var info = getInfo();
-        console.log([info]);
+        
         $.ajax({
             url: "/calcular/imovel",
             dataType: 'json',
@@ -90,16 +96,16 @@ $( document ).ready(function() {
         }).done(function(callback){
 
             if(callback.message == "error"){
-                console.log("deu ruim mané");
-            }else{
-                $("#valorInputId").val(callback.result);
+                
+            }else
+            {
+                var valor = callback.result.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                $("#valorInputId").val(valor);
             }
             
         }).fail(function(jqXHR, textStatus, msg){
             
         });
-
-
     });
 
     function getInfo()
