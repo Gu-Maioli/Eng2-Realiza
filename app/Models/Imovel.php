@@ -15,6 +15,17 @@ class Imovel extends Model
     protected $fillable = ['descricao', 'status_atual', 'logradouro_id', 'user_id'];
     public $timestamps = false;
     protected $guarded = [];
+    private static Imovel $instance;
+
+    public static function getInstance(): Imovel
+    {
+        if(!isset(self::$instance))
+            self::$instance = new Imovel();
+        
+        return self::$instance;
+    }
+
+    private function __construct(){ }
 
     static function getImovel($id)
     {

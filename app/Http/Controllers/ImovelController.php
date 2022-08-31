@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Validator;
 class ImovelController extends Controller
 {
     public function index(Request $request)
-    {      
+    {
         try
         {
             $imoveis = new Imovel();
-            //DB::enableQueryLog();
+            
             if(isset($request->all()['pesquisar']))
             {
                 if( $request->all()['pesquisar'] != null || $request->all()['pesquisar'] != "")
@@ -27,7 +27,6 @@ class ImovelController extends Controller
             else
                 $imoveis = $imoveis->getAll(); 
             
-            //dd(DB::getQueryLog());
             $parametrizacao = $this->getParametrizacao();
             
             return view('imovel.showImovel', compact('imoveis', 'parametrizacao'));
@@ -119,7 +118,8 @@ class ImovelController extends Controller
     {
         try
         {
-            $imovel = new Imovel();
+            //aqui
+            $imovel = Imovel::getInstance();
             $imovel->fill($dados);
             $imovel->user_id = $this->selecionaIdUser();
             $imovel->logradouro_id = $logradouro_id;
