@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <label for="conservacaoInputId" class="form-label required">Estado de conservação</label>
             <input name="conservacao" type="text" class="form-control form-control-sm" id="conservacaoInputId">
         </div>

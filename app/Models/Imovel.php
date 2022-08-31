@@ -12,7 +12,7 @@ class Imovel extends Model
     use HasFactory;
 
     protected $table = "imovel";
-    protected $fillable = ['descricao', 'status_atual', 'logradouro_id'];
+    protected $fillable = ['descricao', 'status_atual', 'logradouro_id', 'user_id'];
     public $timestamps = false;
     protected $guarded = [];
 

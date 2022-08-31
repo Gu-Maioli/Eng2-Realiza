@@ -86,6 +86,7 @@ class ImovelController extends Controller
             DB::beginTransaction();
             Logradouro::saveLogradouro($logradouro);
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
+            //dd($imovel);
             Imovel::saveImovel($imovel);
             DB::commit();
 
@@ -120,12 +121,19 @@ class ImovelController extends Controller
         {
             $imovel = new Imovel();
             $imovel->fill($dados);
+            $imovel->user_id = $this->selecionaIdUser();
             $imovel->logradouro_id = $logradouro_id;
 
             return $imovel;
         } catch(Exception $e){
             return '';
         }
+    }
+
+    public function selecionaIdUser()
+    {
+        $ids = [1,2,3,4,5];
+        return array_rand($ids, 1);
     }
 
     public function getParametrizacao()
