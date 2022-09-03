@@ -25,7 +25,7 @@ class Imovel extends Model
         return self::$instance;
     }
 
-    private function __construct(){ }
+    public function __construct(){ }
 
     static function getImovel($id)
     {
@@ -74,7 +74,7 @@ class Imovel extends Model
         }
     }
 
-    static function findImovel($id)
+    public static function findImovel($id)
     {
         return Imovel::find($id)->first();
     }

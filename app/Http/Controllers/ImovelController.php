@@ -17,7 +17,7 @@ class ImovelController extends Controller
     {
         try
         {
-            $imoveis = new Imovel();
+            $imoveis = Imovel::getInstance();
             
             if(isset($request->all()['pesquisar']))
             {
@@ -59,7 +59,8 @@ class ImovelController extends Controller
     {
         try
         {
-            $imovel = Imovel::findImovel($request->all('id_imovel'));
+            $imovel = Imovel::getInstance();
+            $imovel::findImovel($request->all('id_imovel'));
             $logradouro = Logradouro::findLogradouro($request->all('id_logradouro'));
             
             $logradouro = $this->fillInfoLogradouro($logradouro, $request);
@@ -85,12 +86,9 @@ class ImovelController extends Controller
             DB::beginTransaction();
             Logradouro::saveLogradouro($logradouro);
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
-            //dd($imovel);
             Imovel::saveImovel($imovel);
             DB::commit();
 
-            //$logradouro = (new LogradouroController())->store($request);
-            //Imovel::create($request->all());
             return redirect()->route('imovel.index');
         }catch(Exception $e){
             DB::rollBack();
