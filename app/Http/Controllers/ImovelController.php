@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use app\Strategy\ImovelStrategy;
 
 class ImovelController extends Controller
 {
@@ -81,6 +82,8 @@ class ImovelController extends Controller
     {
         try
         {
+            $teste = new tarifaImovel();
+            //$valorEstrategy = ;
             $logradouro = $this->setInfoLogradouro($request);
 
             DB::beginTransaction();
@@ -116,7 +119,6 @@ class ImovelController extends Controller
     {
         try
         {
-            //aqui
             $imovel = Imovel::getInstance();
             $imovel->fill($dados);
             $imovel->user_id = $this->selecionaIdUser();
@@ -128,7 +130,7 @@ class ImovelController extends Controller
         }
     }
 
-    public function selecionaIdUser()
+    public function selecionaIdUser() 
     {
         $ids = [1,2,3,4,5];
         return array_rand($ids, 1);
