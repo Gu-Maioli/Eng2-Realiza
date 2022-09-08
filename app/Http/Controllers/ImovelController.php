@@ -82,7 +82,7 @@ class ImovelController extends Controller
     {
         try
         {
-            $teste = new tarifaImovel();
+            //$teste = new tarifaImovel();
             //$valorEstrategy = ;
             $logradouro = $this->setInfoLogradouro($request);
 
