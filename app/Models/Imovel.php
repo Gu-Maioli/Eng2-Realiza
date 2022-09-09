@@ -12,7 +12,8 @@ class Imovel extends Model
     use HasFactory;
 
     protected $table = "imovel";
-    protected $fillable = ['descricao', 'status_atual', 'logradouro_id', 'user_id'];
+    protected $fillable = ['descricao', 'status_atual', 'logradouro_id', 'user_id', 
+                           'valorAluguel', 'valorImovel', 'tamanho']; // adicionar ao banco
     public $timestamps = false;
     protected $guarded = [];
     private static Imovel $instance;
@@ -23,6 +24,19 @@ class Imovel extends Model
             self::$instance = new Imovel();
         
         return self::$instance;
+    }
+
+    public function valorTarifa($imovel)
+    {
+        if($imovel->tamanho >= 10)
+        {
+            calculaValor($imovel->tamanho);
+        }
+    }
+
+    public function calculaValor($tamanho)
+    {
+        
     }
 
     public function __construct(){ }

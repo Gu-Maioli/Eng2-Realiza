@@ -131,6 +131,7 @@ class ImovelController extends Controller
     }
 
     public function selecionaIdUser() 
+
     {
         $ids = [1,2,3,4,5];
         return array_rand($ids, 1);
