@@ -13,7 +13,7 @@ class Imovel extends Model
 
     protected $table = "imovel";
     protected $fillable = ['descricao', 'status_atual', 'logradouro_id', 'user_id', 
-                           'valorAluguel', 'valorImovel', 'tamanho']; // adicionar ao banco
+                           'valorAluguel', 'valorImovel', 'tamanho'];
     public $timestamps = false;
     protected $guarded = [];
     private static Imovel $instance;
@@ -26,17 +26,26 @@ class Imovel extends Model
         return self::$instance;
     }
 
-    public function valorTarifa($imovel)
+    public static function calcularImovel($imovel)
     {
-        if($imovel->tamanho >= 10)
+        $base = 10000;
+        $tarifa = 0;
+        if($imovel->tamanho <= 20)
         {
-            calculaValor($imovel->tamanho);
+            $tarifa = $base * 0.2;
         }
-    }
-
-    public function calculaValor($tamanho)
-    {
-        
+        else 
+        {
+            if($imovel->tamanho <= 30)
+                $tarifa = $base * 0.3;
+            else
+                if($imovel->tamanho <= 40)
+                    $tarifa = $base * 0.4;
+                else
+                    $tarifa = $base * 0.7;
+        }
+        $imovel->valorImovel = ($base*$imovel->tamanho) + $tarifa;
+        $imovel->valorAluguel = ($imovel->valorImovel*0.02/12);
     }
 
     public function __construct(){ }

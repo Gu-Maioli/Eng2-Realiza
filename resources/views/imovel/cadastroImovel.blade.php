@@ -71,6 +71,10 @@
             <label for="complementoInputId" class="form-label">Complemento</label>
             <input name="complemento" type="text" class="form-control form-control-sm" id="complementoInputId">
         </div>
+        <div class="col-sm-2">
+            <label for="tamanho" class="form-label required">M²</label>
+            <input name="tamanho" type="number" class="form-control form-control-sm" id="tamanhoInputId">
+        </div>
     </div>
 
     <div class="row">

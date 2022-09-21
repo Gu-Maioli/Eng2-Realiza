@@ -82,14 +82,14 @@ class ImovelController extends Controller
     {
         try
         {
-            //$teste = new tarifaImovel();
-            //$valorEstrategy = ;
             $logradouro = $this->setInfoLogradouro($request);
 
             DB::beginTransaction();
             Logradouro::saveLogradouro($logradouro);
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
+            Imovel::calcularImovel($imovel);
             Imovel::saveImovel($imovel);
+            
             DB::commit();
 
             return redirect()->route('imovel.index');
