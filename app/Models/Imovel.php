@@ -29,30 +29,9 @@ class Imovel extends Model
 
     public static function calcularImovel($imovel)
     {
-        $teste = new Calculo1();
-        $teste->calculoStrategy($imovel);
+        $calculo = new Calculo1();
+        $calculo->calculoStrategy($imovel);
         
-        dd($imovel);
-        // aqui ta o calculo que fizemo em aula acho que é só usar ele no strategy
-        /*$base = 10000;
-        $tarifa = 0;
-        
-        if($imovel->tamanho <= 20)
-        {
-            $tarifa = $base * 0.2;
-        }
-        else 
-        {
-            if($imovel->tamanho <= 30)
-                $tarifa = $base * 0.3;
-            else
-                if($imovel->tamanho <= 40)
-                    $tarifa = $base * 0.4;
-                else
-                    $tarifa = $base * 0.7;
-        }
-        $imovel->valorImovel = ($base*$imovel->tamanho) + $tarifa;
-        $imovel->valorAluguel = ($imovel->valorImovel*0.02/12);*/
     }
 
     public function __construct(){ }
