@@ -36,6 +36,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Logradouro</th>
+                <th scope="col">Valor Aluguel</th>
+                <th scope="col">Valor Imóvel</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -46,6 +48,8 @@
             <tr>
                 <th scope="row">{{$i++}}</th>
                 <td>{{$imovel->endereco}}, N°{{$imovel->numero}}, {{$imovel->bairro}} - {{$imovel->cidade}} {{$imovel->uf}}</td>
+                <td>{{$imovel->valorAluguel}}</td>
+                <td>{{$imovel->valorImovel}}</td>
                 <td>{{$imovel->descricao}}</td>
                 <td>
                     <form action="{{ route('imovel.delete', $imovel->id) }}" method="post">
