@@ -3,9 +3,9 @@
 namespace app\Strategy;
 
 use App\Strategy\Calculo3;
-use App\Interface;
+use App\Interface\CalculoStrategyInterface;
 
-class Calculo2 extends ValorImovelInterface { 
+class Calculo2 implements CalculoStrategyInterface { 
 
     public static function calculoStrategy($imovel)
     {

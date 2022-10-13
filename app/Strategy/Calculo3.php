@@ -1,9 +1,10 @@
 <?php
 
 namespace app\Strategy;
-use App\Interface;
 
-class Calculo3 extends ValorImovelInterface{
+use App\Interface\CalculoStrategyInterface;
+
+class Calculo3 implements CalculoStrategyInterface{
 
     public static function calculoStrategy($imovel)
     {

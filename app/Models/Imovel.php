@@ -52,6 +52,7 @@ class Imovel extends Model
         return DB::table('imovel')
                 ->join('logradouro', 'imovel.logradouro_id', 'logradouro.id')
                 ->select('imovel.id', 'imovel.descricao', 'imovel.logradouro_id',
+                         'imovel.valorAluguel', 'valorImovel',
                          'logradouro.complemento', 'logradouro.cep', 'logradouro.uf',
                          'logradouro.numero', 'logradouro.endereco', 'logradouro.bairro',
                          'logradouro.cidade')

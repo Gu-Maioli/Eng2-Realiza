@@ -2,7 +2,9 @@
 
 namespace app\Interface;
 
-interface ValorImovelInterface
+use App\Models\Imovel;
+
+interface CalculoStrategyInterface
 {
-    public function calculoStrategy($imovel);
+    public function calculoStrategy(Imovel $imovel);
 }
