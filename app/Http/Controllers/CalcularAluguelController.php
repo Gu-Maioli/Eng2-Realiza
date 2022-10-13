@@ -93,7 +93,7 @@ class CalcularAluguelController extends Controller
         $dados['conservacao'] = ['boa' => 0.3, 'media' => 0.1, 'ruim' => 0.08];
         $dados['tipoI'] = ['casa' => 0.6, 'sobrado' => 0.2, 'apartamento' => 0.5, 'kitnet' => 0.2];
         $dados['tipo_M'] = ['alvenaria' => 0.4, 'madeira' => 0.2, 'palha' => 0.04];
-
+        
         return $dados;
     }
 }

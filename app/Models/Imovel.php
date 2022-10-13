@@ -30,6 +30,7 @@ class Imovel extends Model
     {
         $base = 10000;
         $tarifa = 0;
+        
         if($imovel->tamanho <= 20)
         {
             $tarifa = $base * 0.2;
