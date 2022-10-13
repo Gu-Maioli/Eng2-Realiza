@@ -10,7 +10,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use app\Strategy\ImovelStrategy;
 
 class ImovelController extends Controller
 {
@@ -87,7 +86,6 @@ class ImovelController extends Controller
             DB::beginTransaction();
             Logradouro::saveLogradouro($logradouro);
             $imovel = $this->setInfoImovel($request->all(), $logradouro->id);
-            Imovel::calcularImovel($imovel);
             Imovel::saveImovel($imovel);
             
             DB::commit();
@@ -123,6 +121,7 @@ class ImovelController extends Controller
             $imovel->fill($dados);
             $imovel->user_id = $this->selecionaIdUser();
             $imovel->logradouro_id = $logradouro_id;
+            Imovel::calcularImovel($imovel);
 
             return $imovel;
         } catch(Exception $e){

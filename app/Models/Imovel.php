@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Strategy\Calculo1;
 
 class Imovel extends Model
 {
@@ -28,7 +29,12 @@ class Imovel extends Model
 
     public static function calcularImovel($imovel)
     {
-        $base = 10000;
+        $teste = new Calculo1();
+        $teste->calculoStrategy($imovel);
+        
+        dd($imovel);
+        // aqui ta o calculo que fizemo em aula acho que é só usar ele no strategy
+        /*$base = 10000;
         $tarifa = 0;
         
         if($imovel->tamanho <= 20)
@@ -46,7 +52,7 @@ class Imovel extends Model
                     $tarifa = $base * 0.7;
         }
         $imovel->valorImovel = ($base*$imovel->tamanho) + $tarifa;
-        $imovel->valorAluguel = ($imovel->valorImovel*0.02/12);
+        $imovel->valorAluguel = ($imovel->valorImovel*0.02/12);*/
     }
 
     public function __construct(){ }
