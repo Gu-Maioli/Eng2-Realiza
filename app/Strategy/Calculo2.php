@@ -8,13 +8,18 @@ class Calculo2{
 
     public static function calculoStrategy($imovel)
     {
+        $base = 10000;
+        $tarifa = 0;
         if($imovel->tamanho <= 30)
         {
-            // calculo
+            $tarifa = $base * 0.3;
+            $imovel->valorImovel = ($base*$imovel->tamanho) + $tarifa;
+            $imovel->valorAluguel = ($imovel->valorImovel*0.02/12);
+            return $imovel->valorAluguel;
         }
         else
         {
-            Calculo3::calculoStrategy($imovel);
+            return Calculo3::calculoStrategy($imovel);
         }
     }
 
